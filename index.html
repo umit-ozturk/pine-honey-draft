@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pinienhonig · ZIYADEM Naturladen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FBF6EC;
+    --cream-deep:#F3EAD6;
+    --card:#FFFEFB;
+    --amber:#B9752E;
+    --amber-deep:#8A5620;
+    --gold:#E0A83E;
+    --pine:#5C7A54;
+    --pine-deep:#3F5C3A;
+    --ink:#3E3226;
+    --ink-soft:#6B5D4C;
+    --line:#E7DCC5;
+    --shadow: 0 8px 24px -12px rgba(139,90,32,0.25);
+  }
+
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:
+      radial-gradient(1200px 500px at 10% -10%, #FDF8EC 0%, transparent 60%),
+      radial-gradient(900px 500px at 100% 0%, #F7EDD6 0%, transparent 55%),
+      var(--cream);
+    color:var(--ink);
+    font-family:'Work Sans', sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{
+    font-family:'Fraunces', serif;
+    color:var(--amber-deep);
+    letter-spacing:-0.01em;
+  }
+
+  a{color:inherit;}
+
+  /* ---------- Top language bar ---------- */
+  .langbar{
+    position:sticky; top:0; z-index:50;
+    display:flex; align-items:center; gap:8px;
+    padding:14px 20px;
+    background:rgba(251,246,236,0.88);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+    flex-wrap:wrap;
+  }
+  .langbar .brand{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:15px;
+    color:var(--amber-deep);
+    margin-right:auto;
+    display:flex; align-items:center; gap:8px;
+    white-space:nowrap;
+  }
+  .brand .drop{width:14px;height:16px;display:inline-block;}
+  .langbtn{
+    appearance:none; border:1px solid var(--line);
+    background:var(--card);
+    color:var(--ink-soft);
+    font-family:'Work Sans', sans-serif;
+    font-weight:600;
+    font-size:13px;
+    padding:8px 14px;
+    border-radius:999px;
+    cursor:pointer;
+    transition:all .18s ease;
+    letter-spacing:.02em;
+  }
+  .langbtn:hover{
+    border-color:var(--gold);
+    color:var(--amber-deep);
+    transform:translateY(-1px);
+    box-shadow:var(--shadow);
+  }
+  .langbtn.active{
+    background:linear-gradient(135deg, var(--amber) 0%, var(--gold) 100%);
+    color:#fff;
+    border-color:transparent;
+    box-shadow:0 6px 16px -6px rgba(185,117,46,0.55);
+  }
+  .langbtn:focus-visible{outline:3px solid var(--pine); outline-offset:2px;}
+
+  /* ---------- Layout ---------- */
+  .wrap{max-width:960px; margin:0 auto; padding:0 20px 80px;}
+  .page{display:none; animation:fadeIn .35s ease;}
+  .page.active{display:block;}
+  @keyframes fadeIn{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);}}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    padding:56px 0 30px;
+    text-align:center;
+    position:relative;
+  }
+  .badge{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:12px; font-weight:700; letter-spacing:.14em;
+    color:var(--pine-deep);
+    background:#EEF3E9;
+    border:1px solid #D9E5D2;
+    padding:6px 14px; border-radius:999px;
+    text-transform:uppercase;
+    margin-bottom:22px;
+  }
+  .hero h1{
+    font-size:clamp(40px,7vw,64px);
+    font-weight:700;
+    margin:0 0 10px;
+    line-height:1.02;
+  }
+  .hero .native{
+    font-size:16px; color:var(--ink-soft);
+    margin-bottom:26px;
+  }
+  .hero p.lead{
+    max-width:620px; margin:0 auto;
+    font-size:17px; color:var(--ink);
+  }
+  .hero p.lead strong{color:var(--amber-deep);}
+
+  .drip-divider{display:block; margin:36px auto 0; width:120px; height:34px;}
+
+  /* ---------- Section titles ---------- */
+  .section{padding:44px 0;}
+  .section-title{
+    font-size:26px; font-weight:600; margin:0 0 22px;
+    display:flex; align-items:baseline; gap:10px;
+  }
+  .section-title .num{
+    font-family:'Fraunces', serif; font-size:15px; color:var(--gold); font-weight:600;
+  }
+
+  /* ---------- Characteristics grid ---------- */
+  .grid2{display:grid; grid-template-columns:repeat(2,1fr); gap:14px;}
+  .grid3{display:grid; grid-template-columns:repeat(3,1fr); gap:14px;}
+  @media(max-width:640px){.grid2,.grid3{grid-template-columns:1fr;}}
+
+  .tile{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:18px 20px;
+    box-shadow:var(--shadow);
+  }
+  .tile .k{
+    font-size:11.5px; font-weight:700; letter-spacing:.1em;
+    color:var(--amber);
+    text-transform:uppercase;
+    margin-bottom:6px;
+  }
+  .tile .v{font-size:14.5px; color:var(--ink);}
+
+  /* ---------- Benefit cards ---------- */
+  .benefits{display:grid; grid-template-columns:repeat(2,1fr); gap:14px;}
+  @media(max-width:640px){.benefits{grid-template-columns:1fr;}}
+  .benefit{
+    display:flex; gap:14px;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:16px 18px;
+    box-shadow:var(--shadow);
+  }
+  .benefit .icon{
+    flex:0 0 40px; width:40px; height:40px;
+    border-radius:10px;
+    background:linear-gradient(135deg,#F3E4C4,#EAD4A0);
+    display:flex; align-items:center; justify-content:center;
+    color:var(--amber-deep);
+  }
+  .benefit h4{margin:0 0 4px; font-size:15px; color:var(--amber-deep); font-family:'Fraunces',serif;}
+  .benefit p{margin:0; font-size:13.8px; color:var(--ink-soft);}
+
+  /* ---------- Chemistry ---------- */
+  .chem{border:1px solid var(--line); border-radius:16px; overflow:hidden; background:var(--card); box-shadow:var(--shadow);}
+  .chem-row{display:grid; grid-template-columns:200px 1fr; gap:20px; padding:16px 20px; border-bottom:1px solid var(--line);}
+  .chem-row:last-child{border-bottom:none;}
+  .chem-row .k{font-size:12px; font-weight:700; letter-spacing:.08em; color:var(--pine-deep); text-transform:uppercase;}
+  .chem-row .v{font-size:14px; color:var(--ink);}
+  @media(max-width:640px){.chem-row{grid-template-columns:1fr; gap:4px;}}
+
+  /* ---------- Uses ---------- */
+  .uses{display:grid; grid-template-columns:repeat(3,1fr); gap:14px;}
+  @media(max-width:640px){.uses{grid-template-columns:1fr;}}
+  .use{
+    text-align:center;
+    background:linear-gradient(180deg,#FFFDF8,#FBF3E2);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:22px 16px;
+  }
+  .use .glyph{font-size:26px; margin-bottom:10px; display:block;}
+  .use h4{margin:0 0 6px; font-size:14.5px; color:var(--amber-deep); font-family:'Fraunces',serif;}
+  .use p{margin:0; font-size:13px; color:var(--ink-soft);}
+
+  /* ---------- Production ---------- */
+  .production{
+    background:linear-gradient(135deg,#F6EFDD,#EFE4C6);
+    border-radius:18px;
+    padding:28px 26px;
+    border:1px solid var(--line);
+  }
+  .production p{margin:0; font-size:14.5px; color:var(--ink);}
+
+  footer{
+    text-align:center;
+    padding:34px 0 10px;
+    font-size:12px;
+    letter-spacing:.08em;
+    color:var(--ink-soft);
+    text-transform:uppercase;
+    border-top:1px solid var(--line);
+    margin-top:20px;
+  }
+
+</style>
+</head>
+<body>
+
+<div class="langbar" id="langbar">
+  <div class="brand">
+    <svg class="drop" viewBox="0 0 14 16" fill="none"><path d="M7 0C7 0 0 8.2 0 11.5C0 14.5 3.13 16 7 16C10.87 16 14 14.5 14 11.5C14 8.2 7 0 7 0Z" fill="#B9752E"/></svg>
+    ZIYADEM Naturladen
+  </div>
+  <!-- language buttons injected by JS -->
+</div>
+
+<div class="wrap" id="content"></div>
+
+<script>
+const LANGS = [
+  {
+    code:'de', label:'DE',
+    menu:'Menü',
+    badge:'Premium Honigtauhonig',
+    title:'Pinienhonig',
+    native:'Çam Balı · Pine Honey · Miel de Pin · Dennenhoning · Miel de Pino',
+    lead:'Kein Blütenhonig — ein Harzschatz aus den Kiefernwäldern Anatoliens. Gesammelt aus dem süßen Sekret der Kiefernschildlaus, ist dieser seltene Honigtauhonig <strong>fünfmal mineralreicher</strong> als gewöhnlicher Blütenhonig.',
+    introTitle:'Was ist Pinienhonig?',
+    introText:'Pinienhonig entsteht nicht aus Blütennektar, sondern aus der süßen Ausscheidung der Marchalina hellenica (Kiefernschildlaus), die auf Kiefern (Pinus brutia) lebt. Die Bienen sammeln diese Substanz und verarbeiten sie zu Honig — weshalb er als Honigtauhonig klassifiziert wird.',
+    charTitle:'Eigenschaften',
+    chars:[
+      {k:'Aussehen', v:'Dunkelbraun, mit rötlichem Schimmer im Licht; opake Struktur.'},
+      {k:'Kristallisation', v:'Bleibt dank des geringen Glukosegehalts jahrelang flüssig.'},
+      {k:'Aroma', v:'Leicht harzig, holzig, rauchig — weniger süß, reizt den Hals nicht.'},
+      {k:'Mineralkapazität', v:'Sehr hohe elektrische Leitfähigkeit — Beweis für Mineralreichtum.'}
+    ],
+    benefitsTitle:'Gesundheitliche Vorteile',
+    benefits:[
+      {icon:'lung', h:'Lunge & Atmung', p:'Beruhigt den Hals und löst Bronchialschleim, erleichtert das Atmen.'},
+      {icon:'gut', h:'Verdauung', p:'Reguliert die Darmbewegungen, sanfte Hilfe bei Verstopfung.'},
+      {icon:'drop', h:'Vaskuläre Unterstützung', p:'Hoher Eisen- und Kupfergehalt unterstützt laut Studien (2025) die Hämoglobinsynthese.'},
+      {icon:'shield', h:'Anti-inflammatorisch', p:'Polyphenole bilden einen schützenden Biofilm in Magen und Darm.'},
+      {icon:'hair', h:'Haar & Kopfhaut', p:'Mineralreichtum nährt die Haarwurzeln, lindert Juckreiz und Schuppen.'},
+      {icon:'immune', h:'Immunmodulation', p:'Stimuliert körpereigene Abwehrmechanismen gegen Infektionen.'},
+      {icon:'energy', h:'Nachhaltige Energie', p:'Niedriger glykämischer Index — ausgewogene Energie für Sportler.'},
+      {icon:'cell', h:'Zellschutz', p:'Antioxidative Kapazität verhindert oxidative Zellschäden.'}
+    ],
+    chemTitle:'Chemische Zusammensetzung',
+    chem:[
+      {k:'Zuckerprofil', v:'25–35 % Fruktose, 18–30 % Glukose · Melezitose, Erlose & Raffinose als starke Präbiotika'},
+      {k:'Mineralprofil', v:'Bis zu 5× mehr Mineralien als Blütenhonig — Kalium, Magnesium, Kalzium, Eisen, Zink, Kupfer'},
+      {k:'Enzyme & pH', v:'pH 4,5–5,1 · Glukoseoxidase erzeugt antibakteriell wirksames Peroxid'},
+      {k:'Aminosäuren', v:'Reich an Prolin, Phenylalanin, Tyrosin · Ernte 2025: 600–900 mg/kg Prolin'},
+      {k:'Phenolisches Profil', v:'Hohe Konzentration an p-Cumarsäure und Ferulasäure'}
+    ],
+    skinTitle:'Haut & Lunge',
+    skin:[
+      {h:'Sebum-Balance', p:'Natürliche Kiefernharzreste wirken adstringierend bei fettiger, aknegeneigter Haut.'},
+      {h:'Akne-Management', p:'Reguliert überschüssiges Hautfett und reinigt die Poren tiefgehend.'},
+      {h:'Fleckentherapie', p:'Reguliert die Melaninproduktion — klinisch wirksam als „Rohhonig“-Maske.'}
+    ],
+    prodTitle:'Produktionsprozess',
+    prodText:'Der Prozess hängt vollständig von der Kiefernschildlaus ab: Das Insekt ernährt sich vom Kiefernharz und scheidet eine süße Substanz auf der Rinde aus. Die Bienen sammeln diese „Basra“ und verwandeln sie im Bienenstock in Honig. Die Ernte erfolgt meist zwischen September und November.',
+    usesTitle:'Anwendungsbereiche',
+    uses:[
+      {g:'🍯', h:'Gastronomie', p:'Als natürlicher Süßstoff.'},
+      {g:'✨', h:'Dermatologie', p:'In Masken zur Behandlung von Hautflecken.'},
+      {g:'🌿', h:'Apitherapie', p:'Zur Unterstützung von Wachstum und Appetit bei Kindern.'}
+    ],
+    footer:'ZIYADEM Naturladen · Köln · Seit 1997 · Erhältlich bei ZIYADEM Naturladen — ziyadem.de',
+  },
+  {
+    code:'en', label:'EN',
+    menu:'Menu',
+    badge:'Premium Honeydew Honey',
+    title:'Pine Honey',
+    native:'Pinienhonig · Çam Balı · Miel de Pin · Dennenhoning · Miel de Pino',
+    lead:'Not a floral honey — a resin treasure from the pine forests of Anatolia. Collected from the sweet secretion of the pine scale insect, this rare honeydew honey is <strong>five times richer in minerals</strong> than ordinary floral honey.',
+    introTitle:'What is Pine Honey?',
+    introText:'Pine honey is not derived from floral nectar but from the sweet secretion produced by the insect Marchalina hellenica (pine scale), which lives on pine trees (Pinus brutia). Bees collect this secretion and transform it into honey — classifying it as a honeydew honey.',
+    charTitle:'Characteristics',
+    chars:[
+      {k:'Appearance', v:'Dark brown tones, reddish shimmer in the light; opaque texture.'},
+      {k:'Crystallization', v:'Stays liquid for years thanks to its low glucose content.'},
+      {k:'Aroma', v:'Slightly resinous, woody, smoky — less sweet, gentle on the throat.'},
+      {k:'Mineral capacity', v:'Very high electrical conductivity — proof of mineral richness.'}
+    ],
+    benefitsTitle:'Health Benefits',
+    benefits:[
+      {icon:'lung', h:'Lungs & Respiration', p:'Soothes the throat and loosens bronchial mucus, easing breathing.'},
+      {icon:'gut', h:'Digestion', p:'Regulates bowel movements, gentle relief for constipation.'},
+      {icon:'drop', h:'Vascular Support', p:'Rich in iron & copper; 2025 literature links it to hemoglobin synthesis.'},
+      {icon:'shield', h:'Anti-Inflammatory', p:'Unique polyphenols form a protective biofilm in stomach and intestines.'},
+      {icon:'hair', h:'Hair & Scalp', p:'High mineral content nourishes follicles, soothes itching and flaking.'},
+      {icon:'immune', h:'Immune Modulation', p:'Stimulates the body\'s defenses against infections.'},
+      {icon:'energy', h:'Sustainable Energy', p:'Low glycemic index — long-lasting, balanced energy for athletes.'},
+      {icon:'cell', h:'Cell Protection', p:'Antioxidant capacity prevents oxidative cell damage.'}
+    ],
+    chemTitle:'Chemical Composition',
+    chem:[
+      {k:'Sugar profile', v:'25–35% fructose, 18–30% glucose · melezitose, erlose & raffinose as strong prebiotics'},
+      {k:'Mineral matrix', v:'Up to 5x richer in minerals than floral honey — potassium, magnesium, calcium, iron, zinc, copper'},
+      {k:'Enzymes & pH', v:'pH 4.5–5.1 · glucose oxidase yields antibacterial peroxide on contact with water'},
+      {k:'Amino acids', v:'Rich in proline, phenylalanine, tyrosine · 2025 harvest: 600–900 mg/kg proline'},
+      {k:'Phenolic profile', v:'High concentration of p-coumaric and ferulic acid'}
+    ],
+    skinTitle:'Skin & Lung Care',
+    skin:[
+      {h:'Sebum Balance', p:'Natural pine resin residues act as an astringent for oily, acne-prone skin.'},
+      {h:'Acne Management', p:'Balances excess oil and provides deep pore cleansing.'},
+      {h:'Spot Treatment', p:'Regulates melanin production — clinically effective as a raw-honey mask.'}
+    ],
+    prodTitle:'Production Process',
+    prodText:'The process depends entirely on the pine scale insect: it feeds on pine sap and secretes a sweet substance onto the bark. Bees collect this "basra" and transform it into honey in the hive. Harvest typically occurs between September and November.',
+    usesTitle:'Uses',
+    uses:[
+      {g:'🍯', h:'Gastronomy', p:'As a natural sweetener.'},
+      {g:'✨', h:'Dermatology', p:'In masks for treating skin spots.'},
+      {g:'🌿', h:'Apitherapy', p:'Supports children\'s growth and appetite regulation.'}
+    ],
+    footer:'ZIYADEM Naturladen · Cologne · Since 1997 · Available at ZIYADEM Naturladen — ziyadem.de',
+  },
+  {
+    code:'fr', label:'FR',
+    menu:'Menu',
+    badge:'Miel de miellat premium',
+    title:'Miel de Pin',
+    native:'Pinienhonig · Pine Honey · Çam Balı · Dennenhoning · Miel de Pino',
+    lead:'Pas un miel floral — un trésor résineux des forêts de pins d\'Anatolie. Récolté à partir de la sécrétion sucrée de la cochenille du pin, ce rare miel de miellat est <strong>cinq fois plus riche en minéraux</strong> qu\'un miel floral ordinaire.',
+    introTitle:'Qu\'est-ce que la miel de pin ?',
+    introText:'La miel de pin n\'est pas issue du nectar floral, mais de la sécrétion sucrée produite par l\'insecte Marchalina hellenica (cochenille du pin), qui vit sur les pins (Pinus brutia). Les abeilles récoltent cette substance et la transforment en miel — ce qui en fait une miel de miellat.',
+    charTitle:'Caractéristiques',
+    chars:[
+      {k:'Apparence', v:'Brun foncé, reflets rougeâtres à la lumière ; texture opaque.'},
+      {k:'Cristallisation', v:'Reste liquide pendant des années grâce à sa faible teneur en glucose.'},
+      {k:'Arôme', v:'Légèrement résineux, boisé, fumé ; moins sucré, n\'irrite pas la gorge.'},
+      {k:'Capacité minérale', v:'Conductivité électrique très élevée — preuve de sa richesse minérale.'}
+    ],
+    benefitsTitle:'Bienfaits pour la Santé',
+    benefits:[
+      {icon:'lung', h:'Poumons & Respiration', p:'Adoucit la gorge et facilite la respiration en relâchant le mucus bronchique.'},
+      {icon:'gut', h:'Digestion', p:'Régule le transit intestinal, soulage la constipation.'},
+      {icon:'drop', h:'Soutien Vasculaire', p:'Riche en fer et cuivre ; la littérature de 2025 souligne son rôle dans la synthèse de l\'hémoglobine.'},
+      {icon:'shield', h:'Anti-inflammatoire', p:'Ses polyphénols forment un biofilm protecteur dans l\'estomac et les intestins.'},
+      {icon:'hair', h:'Cheveux & Cuir Chevelu', p:'Sa richesse minérale nourrit les follicules et apaise les démangeaisons.'},
+      {icon:'immune', h:'Modulation Immunitaire', p:'Stimule les défenses naturelles contre les infections.'},
+      {icon:'energy', h:'Énergie Durable', p:'Faible indice glycémique — énergie prolongée et équilibrée pour les sportifs.'},
+      {icon:'cell', h:'Protection Cellulaire', p:'Sa capacité antioxydante prévient les dommages oxydatifs des cellules.'}
+    ],
+    chemTitle:'Composition Chimique',
+    chem:[
+      {k:'Profil sucré', v:'25–35 % fructose, 18–30 % glucose · mélezitose, érlose & raffinose, puissants prébiotiques'},
+      {k:'Matrice minérale', v:'Jusqu\'à 5x plus de minéraux que les miels floraux — potassium, magnésium, calcium, fer, zinc, cuivre'},
+      {k:'Enzymes & pH', v:'pH 4,5–5,1 · la glucose-oxydase produit un peroxyde antibactérien au contact de l\'eau'},
+      {k:'Acides aminés', v:'Riche en proline, phénylalanine, tyrosine · récolte 2025 : 600–900 mg/kg de proline'},
+      {k:'Profil phénolique', v:'Forte concentration d\'acide p-coumarique et d\'acide férulique'}
+    ],
+    skinTitle:'Peau & Poumons',
+    skin:[
+      {h:'Équilibre du Sébum', p:'Les résidus naturels de résine agissent comme astringent pour peaux grasses et sujettes à l\'acné.'},
+      {h:'Gestion de l\'Acné', p:'Régule l\'excès de sébum et nettoie les pores en profondeur.'},
+      {h:'Traitement des Taches', p:'Régule la mélanine — efficacité clinique en masque de « miel brut ».'}
+    ],
+    prodTitle:'Processus de Production',
+    prodText:'Le processus dépend entièrement de la cochenille du pin : l\'insecte se nourrit de la sève et sécrète un liquide sucré sur l\'écorce. Les abeilles récoltent cette « basra » et la transforment en miel dans la ruche. La récolte a lieu généralement entre septembre et novembre.',
+    usesTitle:'Usages',
+    uses:[
+      {g:'🍯', h:'Gastronomie', p:'Comme édulcorant naturel.'},
+      {g:'✨', h:'Dermatologie', p:'En masques contre les taches cutanées.'},
+      {g:'🌿', h:'Apithérapie', p:'Pour stimuler la croissance et réguler l\'appétit des enfants.'}
+    ],
+    footer:'ZIYADEM Naturladen · Cologne · Depuis 1997 · Disponible chez ZIYADEM Naturladen — ziyadem.de',
+  },
+  {
+    code:'nl', label:'NL',
+    menu:'Menu',
+    badge:'Premium honingdauw-honing',
+    title:'Dennenhoning',
+    native:'Pinienhonig · Pine Honey · Miel de Pin · Çam Balı · Miel de Pino',
+    lead:'Geen bloemenhoning — een harsschat uit de dennenbossen van Anatolië. Verzameld uit de zoete afscheiding van de dennenluis, is deze zeldzame honingdauw-honing <strong>vijf keer mineraalrijker</strong> dan gewone bloemenhoning.',
+    introTitle:'Wat is dennenhoning?',
+    introText:'Dennenhoning ontstaat niet uit bloemennectar, maar uit de zoete afscheiding van de Marchalina hellenica (dennenluis), die leeft op pijnbomen (Pinus brutia). Bijen verzamelen deze substantie en verwerken ze tot honing — waardoor het wordt geclassificeerd als een honingdauw-honing.',
+    charTitle:'Kenmerken',
+    chars:[
+      {k:'Uiterlijk', v:'Donkerbruin, roodachtige glans bij lichtinval; ondoorzichtige structuur.'},
+      {k:'Kristallisatie', v:'Blijft jarenlang vloeibaar dankzij het lage glucosegehalte.'},
+      {k:'Aroma', v:'Licht harsachtig, houtachtig, gerookt; minder zoet, niet scherp in de keel.'},
+      {k:'Minerale capaciteit', v:'Zeer hoge geleidbaarheid — bewijs van uitzonderlijke mineralenrijkdom.'}
+    ],
+    benefitsTitle:'Gezondheidsvoordelen',
+    benefits:[
+      {icon:'lung', h:'Longen & Ademhaling', p:'Verzacht de keel en maakt ademen makkelijker door slijm los te maken.'},
+      {icon:'gut', h:'Spijsvertering', p:'Reguleert de darmbewegingen, zachte hulp bij constipatie.'},
+      {icon:'drop', h:'Vasculaire Steun', p:'Rijk aan ijzer en koper; literatuur van 2025 koppelt dit aan hemoglobinesynthese.'},
+      {icon:'shield', h:'Ontstekingsremmend', p:'Polyfenolen vormen een beschermende biofilm in maag en darmen.'},
+      {icon:'hair', h:'Haar & Hoofdhuid', p:'Hoog mineralengehalte voedt de haarwortels en kalmeert jeuk en schilfering.'},
+      {icon:'immune', h:'Immuunmodulatie', p:'Stimuleert de natuurlijke afweer tegen infecties.'},
+      {icon:'energy', h:'Duurzame Energie', p:'Lage glycemische index — langdurige, stabiele energie voor sporters.'},
+      {icon:'cell', h:'Celbescherming', p:'Antioxidatieve capaciteit voorkomt oxidatieve schade aan cellen.'}
+    ],
+    chemTitle:'Chemische Samenstelling',
+    chem:[
+      {k:'Suikerprofiel', v:'25–35% fructose, 18–30% glucose · melezitose, erlose & raffinose als sterke prebiotica'},
+      {k:'Mineraalprofiel', v:'Tot 5x meer mineralen dan bloemenhoning — kalium, magnesium, calcium, ijzer, zink, koper'},
+      {k:'Enzymen & pH', v:'pH 4,5–5,1 · glucose-oxidase vormt antibacterieel peroxide bij contact met water'},
+      {k:'Aminozuren', v:'Rijk aan proline, fenylalanine, tyrosine · oogst 2025: 600–900 mg/kg proline'},
+      {k:'Fenolisch profiel', v:'Hoge concentratie p-coumarinezuur en ferulinezuur'}
+    ],
+    skinTitle:'Huid & Longen',
+    skin:[
+      {h:'Sebum-balans', p:'Natuurlijke dennenharsresten werken adstringerend bij vette, acnegevoelige huid.'},
+      {h:'Acnebeheer', p:'Reguleert overtollig talg en reinigt de poriën diep.'},
+      {h:'Vlekkenbehandeling', p:'Reguleert melanineproductie — klinisch effectief als "rauwe honing" masker.'}
+    ],
+    prodTitle:'Productieproces',
+    prodText:'Het proces is volledig afhankelijk van de dennenluis: het insect voedt zich met dennenvocht en laat een zoete substantie achter op de boomschors. Bijen verzamelen deze "basra" en verwerken het in de korf tot honing. De oogst vindt meestal plaats tussen september en november.',
+    usesTitle:'Toepassingen',
+    uses:[
+      {g:'🍯', h:'Gastronomie', p:'Als natuurlijke zoetstof.'},
+      {g:'✨', h:'Dermatologie', p:'In maskers tegen pigmentvlekken.'},
+      {g:'🌿', h:'Apitherapie', p:'Voor de groei en eetlustregulatie bij kinderen.'}
+    ],
+    footer:'ZIYADEM Naturladen · Keulen · Sinds 1997 · Verkrijgbaar bij ZIYADEM Naturladen — ziyadem.de',
+  },
+  {
+    code:'es', label:'ES',
+    menu:'Menú',
+    badge:'Miel de mielada premium',
+    title:'Miel de Pino',
+    native:'Pinienhonig · Pine Honey · Miel de Pin · Dennenhoning · Çam Balı',
+    lead:'No es una miel floral — un tesoro resinoso de los pinares de Anatolia. Recolectada a partir de la secreción dulce de la cochinilla del pino, esta rara miel de mielada es <strong>cinco veces más rica en minerales</strong> que la miel floral común.',
+    introTitle:'¿Qué es la miel de pino?',
+    introText:'La miel de pino no procede del néctar floral, sino del dulce exudado producido por el insecto Marchalina hellenica (cochinilla del pino), que vive en los pinos (Pinus brutia). Las abejas recolectan esta secreción y la transforman en miel — por lo que se clasifica como una miel de mielada.',
+    charTitle:'Características',
+    chars:[
+      {k:'Apariencia', v:'Tonos marrón oscuro, brillo rojizo con la luz; textura opaca.'},
+      {k:'Cristalización', v:'Permanece líquida durante años gracias a su bajo contenido de glucosa.'},
+      {k:'Aroma', v:'Ligeramente resinoso, amaderado, ahumado; menos dulce, no irrita la garganta.'},
+      {k:'Capacidad mineral', v:'Alta conductividad eléctrica — prueba de su gran riqueza mineral.'}
+    ],
+    benefitsTitle:'Beneficios para la Salud',
+    benefits:[
+      {icon:'lung', h:'Pulmones y Respiración', p:'Suaviza la garganta y facilita la respiración al aflojar el moco bronquial.'},
+      {icon:'gut', h:'Digestión', p:'Regula el tránsito intestinal, alivio suave contra el estreñimiento.'},
+      {icon:'drop', h:'Apoyo Vascular', p:'Rica en hierro y cobre; la literatura de 2025 la vincula con la síntesis de hemoglobina.'},
+      {icon:'shield', h:'Antiinflamatoria', p:'Sus polifenoles forman un biofilm protector en estómago e intestinos.'},
+      {icon:'hair', h:'Cabello y Cuero Cabelludo', p:'Su riqueza mineral nutre los folículos y calma la picazón.'},
+      {icon:'immune', h:'Modulación Inmunitaria', p:'Estimula las defensas naturales contra infecciones.'},
+      {icon:'energy', h:'Energía Sostenible', p:'Bajo índice glucémico — energía prolongada y equilibrada para deportistas.'},
+      {icon:'cell', h:'Protección Celular', p:'Su capacidad antioxidante previene el daño oxidativo en las células.'}
+    ],
+    chemTitle:'Composición Química',
+    chem:[
+      {k:'Perfil de azúcares', v:'25–35 % fructosa, 18–30 % glucosa · melezitosa, erulosa y rafinosa, potentes prebióticos'},
+      {k:'Matriz mineral', v:'Hasta 5x más minerales que las mieles florales — potasio, magnesio, calcio, hierro, zinc, cobre'},
+      {k:'Enzimas y pH', v:'pH 4,5–5,1 · la glucosa oxidasa genera peróxido antibacteriano al contacto con agua'},
+      {k:'Aminoácidos', v:'Rica en prolina, fenilalanina, tirosina · cosecha 2025: 600–900 mg/kg de prolina'},
+      {k:'Perfil fenólico', v:'Alta concentración de ácido p-cumárico y ácido ferúlico'}
+    ],
+    skinTitle:'Piel y Pulmones',
+    skin:[
+      {h:'Equilibrio Sebáceo', p:'Los residuos naturales de resina actúan como astringente en piel grasa y propensa al acné.'},
+      {h:'Tratamiento del Acné', p:'Regula el exceso de grasa y limpia profundamente los poros.'},
+      {h:'Tratamiento de Manchas', p:'Regula la melanina — eficacia clínica como mascarilla de "miel cruda".'}
+    ],
+    prodTitle:'Proceso de Producción',
+    prodText:'El proceso depende totalmente de la cochinilla del pino: se alimenta de la savia del pino y excreta un líquido dulce sobre la corteza. Las abejas recolectan esta "basra" y la transforman en miel en la colmena. La cosecha suele realizarse entre septiembre y noviembre.',
+    usesTitle:'Usos',
+    uses:[
+      {g:'🍯', h:'Gastronomía', p:'Como endulzante natural.'},
+      {g:'✨', h:'Dermatología', p:'En mascarillas para tratar manchas cutáneas.'},
+      {g:'🌿', h:'Apiterapia', p:'Para estimular el crecimiento infantil y regular el apetito.'}
+    ],
+    footer:'ZIYADEM Naturladen · Colonia · Desde 1997 · Disponible en ZIYADEM Naturladen — ziyadem.de',
+  },
+  {
+    code:'tr', label:'TR',
+    menu:'Menü',
+    badge:'Premium Salgı Balı',
+    title:'Çam Balı',
+    native:'Pinienhonig · Pine Honey · Miel de Pin · Dennenhoning · Miel de Pino',
+    lead:'Çiçek balı değil — Anadolu\'nun çam ormanlarından bir reçine hazinesi. Çam kabuklu biti\'nin tatlı salgısından toplanan bu nadir salgı balı, sıradan çiçek balından <strong>beş kat daha mineral zengindir</strong>.',
+    introTitle:'Çam Balı Nedir?',
+    introText:'Çam balı, çiçek nektarından değil, çam ağaçlarında (Pinus brutia) yaşayan Basra böceğinin (Marchalina hellenica) ürettiği tatlı salgının arılar tarafından toplanmasıyla elde edilir — bu yüzden bir salgı balı olarak sınıflandırılır.',
+    charTitle:'Özellikleri',
+    chars:[
+      {k:'Görünüm', v:'Koyu kahverengi, ışıkta kızılımsı parıltı; opak bir yapı.'},
+      {k:'Kristalleşme', v:'Düşük glikoz oranı sayesinde yıllarca sıvı kalabilir.'},
+      {k:'Aroma', v:'Hafif reçinemsi, odunsu, tütsülenmiş; daha az tatlı, boğazı yakmaz.'},
+      {k:'Mineral kapasitesi', v:'Çok yüksek iletkenlik — mineral zenginliğinin fiziksel kanıtı.'}
+    ],
+    benefitsTitle:'Sağlık Faydaları',
+    benefits:[
+      {icon:'lung', h:'Akciğer & Solunum', p:'Boğazı yumuşatır, bronşlardaki mukusu gevşeterek nefes almayı kolaylaştırır.'},
+      {icon:'gut', h:'Sindirim', p:'Bağırsak hareketlerini düzenler, kabızlıkta nazik bir çözüm sunar.'},
+      {icon:'drop', h:'Vasküler Destek', p:'Demir ve bakırca zengin; 2025 literatürü hemoglobin sentezini desteklediğini belirtir.'},
+      {icon:'shield', h:'Anti-İnflamatuar', p:'Polifenoller mide ve bağırsaklarda koruyucu bir biyofilm oluşturur.'},
+      {icon:'hair', h:'Saç & Saç Derisi', p:'Yüksek mineral içeriği saç köklerini besler, kaşıntı ve pullanmayı yatıştırır.'},
+      {icon:'immune', h:'Bağışıklık Modülasyonu', p:'Vücudun savunma mekanizmalarını uyararak enfeksiyonlara direnç geliştirir.'},
+      {icon:'energy', h:'Sürdürülebilir Enerji', p:'Düşük glisemik indeks — sporcular için uzun süreli, dengeli enerji.'},
+      {icon:'cell', h:'Hücre Koruyucu', p:'Antioksidan kapasitesi hücrelerin oksidatif hasara uğramasını engeller.'}
+    ],
+    chemTitle:'Kimyasal Bileşim',
+    chem:[
+      {k:'Şeker profili', v:'%25–35 Fruktoz, %18–30 Glikoz · Melezitoz, Erloz ve Rafinoz güçlü prebiyotiklerdir'},
+      {k:'Mineral matrisi', v:'Çiçek ballarına göre 5 kat fazla mineral — Potasyum, Magnezyum, Kalsiyum, Demir, Çinko, Bakır'},
+      {k:'Enzim & pH', v:'pH 4.5–5.1 · Glukoz Oksidaz, suyla temasta bakteri öldürücü peroksit üretir'},
+      {k:'Amino asitler', v:'Prolin, Fenilalanin, Tyrosin bakımından zengin · 2025 hasadı: 600–900 mg/kg Prolin'},
+      {k:'Fenolik profil', v:'Yüksek konsantrasyonda p-kumarik asit ve ferulik asit'}
+    ],
+    skinTitle:'Cilt & Akciğer',
+    skin:[
+      {h:'Sebum Dengesi', p:'Doğal çam reçinesi kalıntıları, yağlı ve akneye meyilli ciltler için astranjan görevi görür.'},
+      {h:'Akne Yönetimi', p:'Ciltteki fazla yağı dengeler, derin gözenek temizliği sağlar.'},
+      {h:'Leke Tedavisi', p:'Melanin üretimini dengeler — "ham bal" maskesi olarak klinik düzeyde etkilidir.'}
+    ],
+    prodTitle:'Üretim Süreci',
+    prodText:'Süreç tamamen Basra böceğine bağlıdır: böcek çam özsuyunu emer, artan tatlı salgıyı ağaç gövdesine bırakır. Arılar bu "basra"yı toplar ve kovanlarında enzimlerle bala dönüştürür. Hasat genellikle Eylül–Kasım aylarında yapılır.',
+    usesTitle:'Kullanım Alanları',
+    uses:[
+      {g:'🍯', h:'Gastronomi', p:'Doğal tatlandırıcı olarak.'},
+      {g:'✨', h:'Dermatoloji', p:'Leke giderici maskelerde.'},
+      {g:'🌿', h:'Apiterapi', p:'Çocukların boy gelişimi ve iştah düzenlemesinde.'}
+    ],
+    footer:'ZIYADEM Naturladen · Köln · 1997\'den beri · ZİYADEM Naturladen\'de satışta — ziyadem.de',
+  }
+];
+
+const ICONS = {
+  lung: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 3v7c0 2-2 3-3 5s-1 5 1 6 4-1 4-3V9"/><path d="M15 3v7c0 2 2 3 3 5s1 5-1 6-4-1-4-3V9"/><path d="M9 8h6"/></svg>',
+  gut: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 4c0 4 4 3 4 7s-4 3-4 7c0 2 2 3 4 3"/><path d="M14 4c0 3 3 2 3 6s-3 3-3 7c0 2 2 3 4 3"/></svg>',
+  drop: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3s6 7 6 11a6 6 0 1 1-12 0c0-4 6-11 6-11Z"/></svg>',
+  shield: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l7 3v6c0 5-3 8-7 9-4-1-7-4-7-9V6l7-3Z"/></svg>',
+  hair: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 21c0-6 1-9 1-12a6 6 0 0 1 12 0c0 3 1 6 1 12"/><path d="M9 21c0-4 .5-6 .5-9M15 21c0-4-.5-6-.5-9"/></svg>',
+  immune: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2 2M16.4 16.4l2 2M5.6 18.4l2-2M16.4 7.6l2-2"/></svg>',
+  energy: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z"/></svg>',
+  cell: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="2.4"/></svg>'
+};
+
+const langbar = document.getElementById('langbar');
+const content = document.getElementById('content');
+
+function render(){
+  LANGS.forEach(L=>{
+    const btn = document.createElement('button');
+    btn.className='langbtn';
+    btn.textContent=L.label;
+    btn.dataset.lang=L.code;
+    btn.setAttribute('aria-label', L.title);
+    btn.addEventListener('click', ()=>selectLang(L.code));
+    langbar.appendChild(btn);
+
+    const page = document.createElement('section');
+    page.className='page';
+    page.id='page-'+L.code;
+    page.innerHTML = `
+      <div class="hero">
+        <span class="badge">${L.badge}</span>
+        <h1>${L.title}</h1>
+        <div class="native">${L.native}</div>
+        <p class="lead">${L.lead}</p>
+        <svg class="drip-divider" viewBox="0 0 120 34" fill="none">
+          <path d="M2 6c14 0 14 10 28 10s14-10 28-10 14 10 28 10 14-10 28-10" stroke="#E0A83E" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="60" cy="26" r="4" fill="#B9752E"/>
+        </svg>
+      </div>
+
+      <div class="section">
+        <h2 class="section-title"><span class="num">01</span>${L.introTitle}</h2>
+        <p style="font-size:15px; color:var(--ink-soft); max-width:680px;">${L.introText}</p>
+      </div>
+
+      <div class="section">
+        <h2 class="section-title"><span class="num">02</span>${L.charTitle}</h2>
+        <div class="grid2">
+          ${L.chars.map(c=>`<div class="tile"><div class="k">${c.k}</div><div class="v">${c.v}</div></div>`).join('')}
+        </div>
+      </div>
+
+      <div class="section">
+        <h2 class="section-title"><span class="num">03</span>${L.benefitsTitle}</h2>
+        <div class="benefits">
+          ${L.benefits.map(b=>`
+            <div class="benefit">
+              <div class="icon">${ICONS[b.icon]||''}</div>
+              <div><h4>${b.h}</h4><p>${b.p}</p></div>
+            </div>`).join('')}
+        </div>
+      </div>
+
+      <div class="section">
+        <h2 class="section-title"><span class="num">04</span>${L.chemTitle}</h2>
+        <div class="chem">
+          ${L.chem.map(c=>`<div class="chem-row"><div class="k">${c.k}</div><div class="v">${c.v}</div></div>`).join('')}
+        </div>
+      </div>
+
+      <div class="section">
+        <h2 class="section-title"><span class="num">05</span>${L.skinTitle}</h2>
+        <div class="grid3">
+          ${L.skin.map(s=>`<div class="tile"><div class="k">${s.h}</div><div class="v">${s.p}</div></div>`).join('')}
+        </div>
+      </div>
+
+      <div class="section">
+        <h2 class="section-title"><span class="num">06</span>${L.prodTitle}</h2>
+        <div class="production"><p>${L.prodText}</p></div>
+      </div>
+
+      <div class="section">
+        <h2 class="section-title"><span class="num">07</span>${L.usesTitle}</h2>
+        <div class="uses">
+          ${L.uses.map(u=>`<div class="use"><span class="glyph">${u.g}</span><h4>${u.h}</h4><p>${u.p}</p></div>`).join('')}
+        </div>
+      </div>
+
+      <footer>${L.footer}</footer>
+    `;
+    content.appendChild(page);
+  });
+}
+
+function selectLang(code){
+  document.querySelectorAll('.langbtn').forEach(b=>b.classList.toggle('active', b.dataset.lang===code));
+  document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active', p.id==='page-'+code));
+  document.documentElement.lang = code;
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+render();
+selectLang('de');
+</script>
+</body>
+</html>
